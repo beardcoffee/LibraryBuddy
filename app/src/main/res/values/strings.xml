@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">LibraryBuddy</string>
+    <string name="first_tab">Frag 1</string>
+    <string name="second_tab">Frag 2</string>
+    <string name="third_tab">Frag 3</string>
+    <string name="fourth_tab">Frag 4</string>
+    <string name="five_tab">Frag 5</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
