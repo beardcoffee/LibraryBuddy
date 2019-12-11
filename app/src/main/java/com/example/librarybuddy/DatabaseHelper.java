@@ -33,7 +33,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "SYNOPSIS TEXT);");
         insertBook(db, "A Clockwork Orange", "Anthony Burgess", 6, R.drawable.clockwork, "Crazy book of stuff, cool read.");
         insertBook(db, "Red Clocks", "Leni Zumas", 0, R.drawable.red_clocks, "Cool book about red clocks.");
-
+        db.execSQL("CREATE TABLE RESERVATIONS ("
+                + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "ROOM TEXT, "
+                + "DATE TEXT, "
+                + "TIME TEXT, "
+                + "STUDENT_ID INTEGER);");
+        insertReservation(db, "102", "December 12", "10:00AM-11:00AM", 0);
+        insertReservation(db, "102", "December 12", "11:00AM-12:00PM", 0);
+        insertReservation(db, "102", "December 13", "10:00AM-11:00AM", 0);
+        insertReservation(db, "101", "December 13", "10:00AM-11:00AM", 0);
+        insertReservation(db, "105", "December 13", "12:00PM-2:00PM", 0);
     }
 
     public static void insertEvent(SQLiteDatabase db, String date, String event){
@@ -50,6 +60,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         personValues.put("RESOURCE", resource);
         personValues.put("SYNOPSIS", synopsis);
         db.insert("BOOKS", null, personValues);
+    }
+    public static void insertReservation(SQLiteDatabase db, String room, String date, String time, int studentId){
+        ContentValues personValues = new ContentValues();
+        personValues.put("ROOM", room);
+        personValues.put("DATE", date);
+        personValues.put("TIME", time);
+        personValues.put("STUDENT_ID", studentId);
+        db.insert("RESERVATIONS", null, personValues);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){}

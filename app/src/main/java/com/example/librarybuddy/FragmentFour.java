@@ -15,6 +15,8 @@ import android.widget.Spinner;
 
 public class FragmentFour extends Fragment implements AdapterView.OnItemSelectedListener{
 
+    private Spinner spinner;
+
     public FragmentFour() {
         // Required empty public constructor
     }
@@ -31,7 +33,7 @@ public class FragmentFour extends Fragment implements AdapterView.OnItemSelected
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_four, container, false);
-        Spinner spinner = (Spinner) v.findViewById(R.id.spinnerMap);
+        spinner = (Spinner) v.findViewById(R.id.spinnerMap);
         ArrayAdapter<Floor> adapter = new ArrayAdapter<>(inflater.getContext(),
                 android.R.layout.simple_spinner_item,
                 Floor.floors);

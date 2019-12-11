@@ -15,6 +15,7 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private FragmentTwo bookSearchFragment;
+    private FragmentThree roomReserveFragment;
     private SectionsPagerAdapter adapter;
     private boolean search = false;
     private String query = "";
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        adapter = new 	SectionsPagerAdapter(getSupportFragmentManager());
+        adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         ViewPager myPager = findViewById(R.id.pager);
         myPager.setAdapter(adapter);
 
@@ -61,7 +63,29 @@ public class MainActivity extends AppCompatActivity {
         queryTextView.setText("");
         adapter.notifyDataSetChanged();
     }
-    private class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+
+    public void reserve(View view){
+        RadioGroup rg = (RadioGroup) this.findViewById(R.id.room_list);
+
+
+        if(rg.getCheckedRadioButtonId()!= -1){
+            long uid = roomReserveFragment.getRoomUID(rg.getCheckedRadioButtonId());
+            if(uid != -1) {
+                SQLiteOpenHelper databaseHelper = new DatabaseHelper(view.getContext());
+                SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+                db.delete("RESERVATIONS", "_id=?", new String[]{Long.toString(uid)});
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Room Reserved", Toast.LENGTH_SHORT);
+                toast.show();
+                adapter.notifyDataSetChanged();
+            }
+        }else{
+            Toast toast = Toast.makeText(getApplicationContext(), "Make a selection!!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm){
             super(fm);
@@ -77,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
                     return bookSearchFragment = new FragmentTwo(search, query);
 
                 case 2:
-                    return new FragmentThree();
+                    return roomReserveFragment = new FragmentThree();
                 case 3:
                     return new FragmentFour();
                 case 4:
