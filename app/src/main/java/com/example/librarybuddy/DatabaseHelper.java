@@ -24,6 +24,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertEvent(db, "11/26", "Interview Workshop");
         insertEvent(db, "11/27", "Free Coffee");
         insertEvent(db, "12/01", "Quiet Time");
+        insertEvent(db, "12/03", "Reading Day");
+        insertEvent(db, "12/04", "24 hour library hour extension begins");
+        insertEvent(db, "12/11", "Academic Advising");
+        insertEvent(db, "12/13", "CSCI 4661 App demos");
         db.execSQL("CREATE TABLE BOOKS ("
                 + "_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + "TITLE TEXT, "

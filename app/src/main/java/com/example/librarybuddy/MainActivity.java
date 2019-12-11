@@ -67,13 +67,15 @@ public class MainActivity extends AppCompatActivity {
     public void reserve(View view){
         RadioGroup rg = (RadioGroup) this.findViewById(R.id.room_list);
 
-
         if(rg.getCheckedRadioButtonId()!= -1){
-            long uid = roomReserveFragment.getRoomUID(rg.getCheckedRadioButtonId());
+            int radioButtonID = rg.getCheckedRadioButtonId();
+            View radioButton = rg.findViewById(radioButtonID);
+            int index = rg.indexOfChild(radioButton);
+            long uid = roomReserveFragment.getRoomUID(index);
             if(uid != -1) {
+
                 SQLiteOpenHelper databaseHelper = new DatabaseHelper(view.getContext());
                 SQLiteDatabase db = databaseHelper.getWritableDatabase();
-
                 db.delete("RESERVATIONS", "_id=?", new String[]{Long.toString(uid)});
 
                 Toast toast = Toast.makeText(getApplicationContext(), "Room Reserved", Toast.LENGTH_SHORT);

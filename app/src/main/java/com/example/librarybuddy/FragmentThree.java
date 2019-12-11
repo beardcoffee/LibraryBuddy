@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,7 +26,6 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
     private LinearLayout linearLayout;
     private Spinner spinner;
     private ArrayList<Room> rooms;
-    private Room currentRoom;
 
 
     public FragmentThree() {
@@ -69,9 +67,11 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
     }
 
     public long getRoomUID(int position){
-        if(rooms.size() > 0)
-            return rooms.get(position - 1 ).getUniqueId();
-
+        if(rooms.size() > 0) {
+            Room tempRoom = rooms.get(position);
+            rooms.remove(position);
+            return tempRoom.getUniqueId();
+        }
         return -1;
     }
 
@@ -90,20 +90,19 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
         if(rg.getChildCount() > 0){
             rg.removeAllViews();
         }
-        rooms = new ArrayList<Room>();
 
+        rooms = new ArrayList<Room>();
         for(int i = 0; i < cursor.getCount(); i++){
             cursor.moveToPosition(i);
             int uid = (int) cursor.getLong(4);
-            rooms.add(new Room(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), uid));
             RadioButton radioButton = new RadioButton(getActivity());
             radioButton.setText("Rm: " + cursor.getString(0) + " " + cursor.getString(2));
-            rg.addView(radioButton, rg.getChildCount());
+            rooms.add(new Room(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), uid));
+            rg.addView(radioButton, i);
         }
         cursor.close();
         db.close();
     }
-
 
 
     @Override
