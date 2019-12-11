@@ -96,7 +96,7 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
             cursor.moveToPosition(i);
             int uid = (int) cursor.getLong(4);
             RadioButton radioButton = new RadioButton(getActivity());
-            radioButton.setText("Rm: " + cursor.getString(0) + " " + cursor.getString(2));
+            radioButton.setText("Rm: " + cursor.getString(0) + " Time: " + cursor.getString(2));
             rooms.add(new Room(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), uid));
             rg.addView(radioButton, i);
         }
