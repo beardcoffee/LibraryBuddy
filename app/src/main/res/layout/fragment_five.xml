@@ -9,7 +9,7 @@ android:layout_height="match_parent"
 android:layout_gravity="center"
 android:layout_margin="20dp"
 tools:context=".MainActivity">
-    <ImageView
+<ImageView
     android:id="@+id/imageView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -20,13 +20,32 @@ tools:context=".MainActivity">
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About"
+        android:text="@string/about"
         android:textAlignment="center"
         android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/AdressText"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:text="@string/library_address" />
+
+    <TextView
+        android:id="@+id/Contact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The library is a place where you can get books and study." />
+        android:text="@string/contact" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:text="@string/Phone" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:text="@string/building_hours" />
+
 </LinearLayout>
