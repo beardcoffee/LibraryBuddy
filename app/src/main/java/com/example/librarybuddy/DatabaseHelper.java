@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "homework";
+    private static final String DB_NAME = "librarybuddy";
     private static final int DB_VERSION = 1;
 
     DatabaseHelper(Context context){
@@ -29,8 +29,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "TITLE TEXT, "
                 + "AUTHOR TEXT, "
                 + "STOCK INTEGER, "
-                + "RESOURCE INTEGER);");
-        insertBook(db, "A Clockwork Orange", "Anthony Burgess", 6, R.drawable.clockwork);
+                + "RESOURCE INTEGER, "
+                + "SYNOPSIS TEXT);");
+        insertBook(db, "A Clockwork Orange", "Anthony Burgess", 6, R.drawable.clockwork, "Crazy book of stuff, cool read.");
+        insertBook(db, "Red Clocks", "Leni Zumas", 0, R.drawable.red_clocks, "Cool book about red clocks.");
 
     }
 
@@ -40,12 +42,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         personValues.put("EVENT_DESCRIPTION", event);
         db.insert("EVENTS", null, personValues);
     }
-    public static void insertBook(SQLiteDatabase db, String title, String author, int stock, int resource){
+    public static void insertBook(SQLiteDatabase db, String title, String author, int stock, int resource, String synopsis){
         ContentValues personValues = new ContentValues();
         personValues.put("TITLE", title);
         personValues.put("AUTHOR", author);
         personValues.put("STOCK", stock);
         personValues.put("RESOURCE", resource);
+        personValues.put("SYNOPSIS", synopsis);
         db.insert("BOOKS", null, personValues);
     }
     @Override

@@ -7,17 +7,19 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_margin="4dp"
+    android:id="@+id/booksearch"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="4dp"
         tools:context=".MainActivity">
 
         <EditText
-            android:id="@+id/textView"
+            android:id="@+id/search_query"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -29,8 +31,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="?android:selectableItemBackground"
+            android:onClick="searchBook"
             android:src="@drawable/baseline_youtube_searched_for_black_36dp" />
 
     </LinearLayout>
-
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/books"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"    />
 </LinearLayout>

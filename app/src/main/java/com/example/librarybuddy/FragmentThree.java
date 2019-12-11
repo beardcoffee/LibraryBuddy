@@ -10,12 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import java.util.ArrayList;
 
 
 public class FragmentThree extends Fragment implements AdapterView.OnItemSelectedListener {
+
+    private LinearLayout linearLayout;
 
     public FragmentThree() {
         // Required empty public constructor
@@ -37,6 +40,7 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_three, container, false);
+        linearLayout = (LinearLayout) getActivity().findViewById(R.id.room_reserve);
         Spinner spinner = (Spinner) v.findViewById(R.id.spinnerDates);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(inflater.getContext(),
                 android.R.layout.simple_spinner_item,

@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:layout_margin="20dp"
+    android:id="@+id/room_reserve"
     tools:context=".MainActivity">
     <Spinner
         android:id="@+id/spinnerDates"
@@ -18,23 +19,7 @@
         android:textAlignment="center"
         android:layout_marginBottom="20dp"/>
 
-    <RadioButton
-        android:id="@+id/radioButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Room 1: 10:00AM-11:00AM" />
 
-    <RadioButton
-        android:id="@+id/radioButton2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Room 2: 10:00AM-11:00AM" />
-
-    <RadioButton
-        android:id="@+id/radioButton3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Room 3: 10:00AM-11:00AM" />
 
     <EditText
         android:id="@+id/textView"
