@@ -1,16 +1,18 @@
 <resources>
     <string name="app_name">LibraryBuddy</string>
-    <string name="first_tab">Welcome</string>
+    <string name="first_tab">Home</string>
     <string name="second_tab">Book Search</string>
-    <string name="third_tab">Room Reserve</string>
+    <string name="third_tab">Rooms</string>
     <string name="fourth_tab">Map</string>
     <string name="five_tab">About</string>
-    <string name="library_address">\n Address:\n  \n Earl K. Long Library \n University of New Orleans \n 2000 Lakeshore Drive \nNew Orleans, LA 70148</string>
+    <string name="library_address">\nEarl K. Long Library \n University of New Orleans \n 2000 Lakeshore Drive \nNew Orleans, LA 70148</string>
     <string name="contact">Contact</string>
     <string name="about">About</string>
-    <string name="Phone">\nLibrary Administration: 504-280-6556 \n Technology Support: 504-280-3273
-        \n Interlibrary Loan: 504-280-7276</string>
-    <string name="building_hours">\nBuilding Hours: \n\n  Sunday: 24 hours \n Monday: 24 hours \n Tuesday: 24 hours \n Wednesday: 24 hours \n Thursday: 8a-11p \n Friday: 8a-430p \n Saturday: closed </string>
+    <string name ="address_title">Address</string>
+    <string name="Phone">\n Library Administration: <a href="tel:15042806556">504-280-6556</a> \n Technology Support: <a href="tel:15042803273">504-280-3273</a>
+        \n Interlibrary Loan: <a href="15042807276">504-280-7276</a></string>
+    <string name="building_title">Building Hours</string>
+    <string name="building_hours">\n  Sunday: 24 hours \n Monday: 24 hours \n Tuesday: 24 hours \n Wednesday: 24 hours \n Thursday: 8a-11p \n Friday: 8a-430p \n Saturday: closed </string>
 
 
 
