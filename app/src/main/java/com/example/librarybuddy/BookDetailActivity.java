@@ -14,16 +14,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 public class BookDetailActivity extends AppCompatActivity {
-
-    public static String BOOK_TITLE;
-    public static String BOOK_AUTHOR;
-    public static String BOOK_STOCK;
-    public static String BOOK_RESOURCE;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -33,7 +25,6 @@ public class BookDetailActivity extends AppCompatActivity {
         BookFragment fragment = (BookFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
         Intent intent = getIntent();
 
-        System.out.println("BOOK TITLE:" + intent.getStringExtra("book_title"));
         String bookTitle = intent.getStringExtra("book_title");
         Toolbar toolbar = (Toolbar) findViewById(R.id.up_toolbar);
         toolbar.setTitle(bookTitle);
@@ -66,5 +57,11 @@ public class BookDetailActivity extends AppCompatActivity {
             textView.setTextColor(Color.RED);
         }
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

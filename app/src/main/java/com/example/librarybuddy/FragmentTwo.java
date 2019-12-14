@@ -12,10 +12,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,6 +49,17 @@ public class FragmentTwo extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_two, container, false);
         linearLayout = (LinearLayout) v.findViewById(R.id.booksearch);
+        EditText text = v.findViewById(R.id.search_query);
+        final ImageButton button = v.findViewById(R.id.book_search_button);
+        text.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent keyevent) {
+                if ((keyevent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    button.performClick();
+                }
+                return false;
+            }
+        });
+
 
         if(search && query.length() > 0) {
             RecyclerView rv = (RecyclerView) linearLayout.findViewById(R.id.books);

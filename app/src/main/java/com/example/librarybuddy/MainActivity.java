@@ -9,12 +9,16 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         query = queryTextView.getText().toString();
         if(query.replaceAll("\\s","").length() > 0){
             if(query.length() >= 3){
+                query = query.trim();
                 search = true;
             }else{
                 Toast toast = Toast.makeText(getApplicationContext(), "Query too short! 3 characters minimum", Toast.LENGTH_SHORT);
@@ -63,7 +68,11 @@ public class MainActivity extends AppCompatActivity {
         queryTextView.setText("");
         adapter.notifyDataSetChanged();
     }
-
+    public void openList(View view) {
+        Intent intent = new Intent(this, RoomReservationsActivity.class);
+        intent.putExtra("student_id", 2472133);
+        startActivity(intent);
+    }
     public void reserve(View view){
         RadioGroup rg = (RadioGroup) this.findViewById(R.id.room_list);
 
@@ -76,8 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
                 SQLiteOpenHelper databaseHelper = new DatabaseHelper(view.getContext());
                 SQLiteDatabase db = databaseHelper.getWritableDatabase();
-                db.delete("RESERVATIONS", "_id=?", new String[]{Long.toString(uid)});
-
+                //db.delete("RESERVATIONS", "_id=?", new String[]{Long.toString(uid)});
+                ContentValues cv = new ContentValues();
+                cv.put("STUDENT_ID", 2472133);
+                db.update("RESERVATIONS", cv, "_id="+ Long.toString(uid),null);
                 Toast toast = Toast.makeText(getApplicationContext(), "Room Reserved", Toast.LENGTH_SHORT);
                 toast.show();
                 adapter.notifyDataSetChanged();

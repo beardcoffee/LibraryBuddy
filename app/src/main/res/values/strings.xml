@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">LibraryBuddy</string>
-    <string name="first_tab">Welcome</string>
+    <string name="first_tab">Home</string>
     <string name="second_tab">Book Search</string>
-    <string name="third_tab">Room Reserve</string>
+    <string name="third_tab">Rooms</string>
     <string name="fourth_tab">Map</string>
     <string name="five_tab">About</string>
     <string name="library_address">\n Address:\n  \n Earl K. Long Library \n University of New Orleans \n 2000 Lakeshore Drive \nNew Orleans, LA 70148</string>

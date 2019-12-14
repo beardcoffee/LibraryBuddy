@@ -42,33 +42,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + "ROOM TEXT, "
                 + "DATE TEXT, "
                 + "TIME TEXT, "
+                + "REASON TEXT, "
                 + "STUDENT_ID INTEGER);");
-        insertReservation(db, "102", "December 12", "10:00AM-11:00AM", 0);
-        insertReservation(db, "102", "December 12", "11:00AM-12:00PM", 0);
-        insertReservation(db, "102", "December 13", "10:00AM-11:00AM", 0);
-        insertReservation(db, "101", "December 13", "10:00AM-11:00AM", 0);
-        insertReservation(db, "105", "December 13", "12:00PM-2:00PM", 0);
-        insertReservation(db, "102", "December 14", "10:00AM-11:00AM", 0);
-        insertReservation(db, "103", "December 14", "11:00AM-12:00PM", 0);
-        insertReservation(db, "105", "December 14", "10:00AM-11:00AM", 0);
-        insertReservation(db, "201", "December 14", "10:00AM-11:00AM", 0);
-        insertReservation(db, "205", "December 14", "12:00PM-2:00PM", 0);
-        insertReservation(db, "103", "December 15", "11:00AM-12:00PM", 0);
-        insertReservation(db, "105", "December 15", "10:00AM-11:00AM", 0);
-        insertReservation(db, "201", "December 15", "10:00AM-11:00AM", 0);
-        insertReservation(db, "205", "December 15", "12:00PM-2:00PM", 0);
-        insertReservation(db, "103", "December 16", "11:00AM-12:00PM", 0);
-        insertReservation(db, "105", "December 16", "10:00AM-11:00AM", 0);
-        insertReservation(db, "201", "December 16", "10:00AM-11:00AM", 0);
-        insertReservation(db, "205", "December 16", "12:00PM-2:00PM", 0);
-        insertReservation(db, "103", "December 17", "11:00AM-12:00PM", 0);
-        insertReservation(db, "105", "December 17", "10:00AM-11:00AM", 0);
-        insertReservation(db, "201", "December 17", "10:00AM-11:00AM", 0);
-        insertReservation(db, "205", "December 17", "12:00PM-2:00PM", 0);
-        insertReservation(db, "103", "December 18", "11:00AM-12:00PM", 0);
-        insertReservation(db, "105", "December 18", "10:00AM-11:00AM", 0);
-        insertReservation(db, "201", "December 18", "10:00AM-11:00AM", 0);
-        insertReservation(db, "205", "December 18", "12:00PM-2:00PM", 0);
+        insertReservation(db, "102", "December 12", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "102", "December 12", "11:00AM-12:00PM","", 0);
+        insertReservation(db, "102", "December 13", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "101", "December 13", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "105", "December 13", "12:00PM-2:00PM","", 0);
+        insertReservation(db, "102", "December 14", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "103", "December 14", "11:00AM-12:00PM","", 0);
+        insertReservation(db, "105", "December 14", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "201", "December 14", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "205", "December 14", "12:00PM-2:00PM","", 0);
+        insertReservation(db, "103", "December 15", "11:00AM-12:00PM","", 0);
+        insertReservation(db, "105", "December 15", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "201", "December 15", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "205", "December 15", "12:00PM-2:00PM","", 0);
+        insertReservation(db, "103", "December 16", "11:00AM-12:00PM","", 0);
+        insertReservation(db, "105", "December 16", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "201", "December 16", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "205", "December 16", "12:00PM-2:00PM","", 0);
+        insertReservation(db, "103", "December 17", "11:00AM-12:00PM","", 0);
+        insertReservation(db, "105", "December 17", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "201", "December 17", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "205", "December 17", "12:00PM-2:00PM","", 0);
+        insertReservation(db, "103", "December 18", "11:00AM-12:00PM","", 0);
+        insertReservation(db, "105", "December 18", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "201", "December 18", "10:00AM-11:00AM","", 0);
+        insertReservation(db, "205", "December 18", "12:00PM-2:00PM","", 0);
     }
 
     public static void insertEvent(SQLiteDatabase db, String date, String event){
@@ -86,11 +87,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         personValues.put("SYNOPSIS", synopsis);
         db.insert("BOOKS", null, personValues);
     }
-    public static void insertReservation(SQLiteDatabase db, String room, String date, String time, int studentId){
+    public static void insertReservation(SQLiteDatabase db, String room, String date, String time, String reason, int studentId){
         ContentValues personValues = new ContentValues();
         personValues.put("ROOM", room);
         personValues.put("DATE", date);
         personValues.put("TIME", time);
+        personValues.put("REASON", reason);
         personValues.put("STUDENT_ID", studentId);
         db.insert("RESERVATIONS", null, personValues);
     }

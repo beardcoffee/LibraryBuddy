@@ -57,6 +57,9 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
         }};
         db.close();
         cursor.close();
+        if(dates.size() == 0){
+            dates.add("No Availability!");
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(inflater.getContext(),
                 android.R.layout.simple_spinner_item,
                 dates);
@@ -77,31 +80,35 @@ public class FragmentThree extends Fragment implements AdapterView.OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String date = spinner.getItemAtPosition(position).toString();;
+        String date = spinner.getItemAtPosition(position).toString();
+        if(date != "No Availability!") {
 
-        SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
-        Cursor cursor = db.query("RESERVATIONS",
-                new String[]{"ROOM", "DATE", "TIME", "STUDENT_ID", "_ID"},
-                "DATE=?", new String[]{date}, null, null, null
-        );
 
-        RadioGroup rg = getActivity().findViewById(R.id.room_list);
-        if(rg.getChildCount() > 0){
-            rg.removeAllViews();
+
+            SQLiteOpenHelper databaseHelper = new DatabaseHelper(getContext());
+            SQLiteDatabase db = databaseHelper.getWritableDatabase();
+            Cursor cursor = db.query("RESERVATIONS",
+                    new String[]{"ROOM", "DATE", "TIME", "STUDENT_ID", "_ID"},
+                    "DATE=?" + " AND " + "STUDENT_ID=0", new String[]{date}, null, null, null
+            );
+
+            RadioGroup rg = getActivity().findViewById(R.id.room_list);
+            if (rg.getChildCount() > 0) {
+                rg.removeAllViews();
+            }
+
+            rooms = new ArrayList<>();
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToPosition(i);
+                int uid = (int) cursor.getLong(4);
+                RadioButton radioButton = new RadioButton(getActivity());
+                radioButton.setText("Rm: " + cursor.getString(0) + " Time: " + cursor.getString(2));
+                rooms.add(new Room(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), uid));
+                rg.addView(radioButton, i);
+            }
+            cursor.close();
+            db.close();
         }
-
-        rooms = new ArrayList<Room>();
-        for(int i = 0; i < cursor.getCount(); i++){
-            cursor.moveToPosition(i);
-            int uid = (int) cursor.getLong(4);
-            RadioButton radioButton = new RadioButton(getActivity());
-            radioButton.setText("Rm: " + cursor.getString(0) + " Time: " + cursor.getString(2));
-            rooms.add(new Room(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getInt(3), uid));
-            rg.addView(radioButton, i);
-        }
-        cursor.close();
-        db.close();
     }
 
 

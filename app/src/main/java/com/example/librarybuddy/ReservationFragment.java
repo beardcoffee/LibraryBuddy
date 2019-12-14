@@ -10,9 +10,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class BookFragment extends Fragment {
+public class ReservationFragment extends Fragment {
 
-    public BookFragment() {
+    public ReservationFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +25,7 @@ public class BookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View bookView = inflater.inflate(R.layout.book_fragment, container, false);
+        View bookView = inflater.inflate(R.layout.reservation_fragment, container, false);
 
         return  bookView;
     }
